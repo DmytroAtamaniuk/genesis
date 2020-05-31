@@ -47,7 +47,12 @@ public class MainTests extends Config {
 
     @Test(dataProvider = "usersData")
     public void createUserWithoutTasks(String userEmail, String userName) throws IOException {
-        String json = "{\"email\":\"" + userEmail + "\",\"name\":\"" + userName + "\",\"tasks\":[16612],\"companies\":[17564]}";
+        String json =
+
+                    "{\"email\":\"" + userEmail + "\"," +
+                    "\"name\":\"" + userName + "\"," +
+                    "\"tasks\":[16612]," +
+                    "\"companies\":[17564]}";
 
         String response = config.post(BASE_URL + "/createuser", json);
         CreateUser users = objectMapper.readValue(response, CreateUser.class);
@@ -75,8 +80,6 @@ public class MainTests extends Config {
         assertEquals(tasks.getName(), userName);
         assertEquals(tasks.getEmail(), userEmail);
         assertNotNull(tasks.getTasks());
-
-
 
     }
 }
